@@ -1,20 +1,64 @@
-// exerciselinkedlist_126.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <string>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
-}
+class Node {
+public:
+	int mutiara;
+	string name;
+	Node* next;
+	Node* salsabila;
+};
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+class DoubleLinkedlist {
+private:
+	Node* LAST;
+public:
+	DoubleLinkedlist();
+	void addNode();
+	bool search(int rolNo, Node** salsabila, Node** current);
+	bool deleteNode(int rollNo);
+	bool listEmpty();
+	void traverse();
+	void revtraverse();
+	void hapus();
+	void searchData();
+};
+
+void DoubleLinkedlist::addNode() {
+    int nim;
+    string name;
+    cout << "\nEnter the roll number of the student: ";
+    cin >> nim;
+    cout << "\nEnter the name of the student: ";
+    cin >> name;
+    Node* newNode = new Node();
+    newNode->mutiara = nim;
+    newNode->name;
+
+	if (LAST == NULL || nim < -LAST->mutiara) {
+		if (LAST != NULL && nim == LAST->mutiara) {
+			cout << "\nDuplicate number not allowed" << endl;
+			return;
+		}
+		newNode->next = LAST;
+		if (LAST == NULL || nim < -LAST->mutiara) {
+			LAST->salsabila = newNode;
+			newNode->salsabila = NULL;
+			LAST = newNode;
+			return;
+		}
+		Node* current = LAST;
+		Node* salsabila = NULL;
+		while (current->next != NULL && current->next->mutiara < nim)
+		{
+			salsabila = current;
+			current = current->next;
+		}
+		if (current->next != NULL && nim == current->next->mutiara) {
+			cout << "\nDuplicate roll numbers not allowed" << endl;
+			return;
+		}
+	};
+	
